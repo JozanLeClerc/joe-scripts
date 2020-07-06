@@ -39,17 +39,20 @@ yes
 no
 EOF"
 		);
-	my $gitshell_cmds = "cd
-touch
-git
-ls";
-	open(my $fh, '>:encoding(UTF-8)', $home_dir . 'git-shell-commands');
-	print $fh $gitshell_cmds;
-	close($fh);
+# 	my $gitshell_cmds = "cd
+# touch
+# git
+# ls";
+
 	system(
 		'/usr/local/bin/dash',
 		'-c',
-		'/bin/chmod +x ' . $home_dir . 'git-shell-commands'
+		'/bin/mkdir -v' . $home_dir . 'git-shell-commands'
+		);
+	system(
+		'/usr/local/bin/dash',
+		'-c',
+		'/bin/ln -s /bin/ls ' . $home_dir . 'git-shell-commands/ls'
 		);
 }
 
