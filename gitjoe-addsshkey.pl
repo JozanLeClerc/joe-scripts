@@ -16,7 +16,7 @@ sub main {
 	my $usr = $ARGV[0];
 	my $sshkey = $ARGV[1];
 	my $home_dir = '/usr/home/' . $usr . '/';
-	open(my $fh, '>:encoding(UTF-8)', $home_dir . '.ssh/authorized_keys');
+	open(my $fh, '>>:encoding(UTF-8)', $home_dir . '.ssh/authorized_keys');
 	print $fh "$sshkey\n";
 	close($fh);
 	exit;
