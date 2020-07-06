@@ -43,12 +43,12 @@ EOF"
 	system(
 		'/usr/local/bin/dash',
 		'-c',
-		'/bin/mkdir -v ' . $home_dir . '.ssh';
+		'/bin/mkdir -v ' . $home_dir . '.ssh'
 		);
 	system(
 		'/usr/local/bin/dash',
 		'-c',
-		'/bin/chown -v ' . $usr . ':' . $usr . ' ' . $home_dir . '.ssh';
+		'/bin/chown -v ' . $usr . ':' . $usr . ' ' . $home_dir . '.ssh'
 		);
 	system(
 		'/usr/local/bin/dash',
@@ -56,17 +56,17 @@ EOF"
 		'/bin/chmod -v 700 ' . $home_dir . '.ssh/';
 		);
 	open(my $fh, '>:encoding(UTF-8)', $home_dir . '.ssh/authorized_keys');
-	print $fh $sshkey;
+	print $fh $sshkey . '\n';
 	close($fh);
 	system(
 		'/usr/local/bin/dash',
 		'-c',
-		'/bin/chown -v ' . $usr . ':' . $usr . ' ' . $home_dir . '.ssh/authorized_keys';
+		'/bin/chown -v ' . $usr . ':' . $usr . ' ' . $home_dir . '.ssh/authorized_keys'
 		);
 	system(
 		'/usr/local/bin/dash',
 		'-c',
-		'/bin/chmod -v 600 ' . $home_dir . '.ssh/authorized_keys';
+		'/bin/chmod -v 600 ' . $home_dir . '.ssh/authorized_keys'
 		);
 }
 
