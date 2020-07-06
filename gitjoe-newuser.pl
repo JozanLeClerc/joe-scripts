@@ -47,12 +47,12 @@ EOF"
 	system(
 		'/usr/local/bin/dash',
 		'-c',
-		'/bin/mkdir -v' . $home_dir . 'git-shell-commands'
+		'/bin/mkdir -v ' . $home_dir . 'git-shell-commands'
 		);
 	system(
 		'/usr/local/bin/dash',
 		'-c',
-		'/bin/ln -v -s ' . $home_dir . 'git-shell-commands/ls /bin/ls'
+		'/bin/ln -v -s /bin/ls ' . $home_dir . 'git-shell-commands/ls'
 		);
 }
 
