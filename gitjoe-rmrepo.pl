@@ -23,7 +23,7 @@ sub main {
 	system(
 		'/usr/local/bin/dash',
 		'-c',
-		'/bin/rm -rfv ' . $home_dir . $repo;
+		'/bin/rm -rfv ' . $home_dir . $repo
 		);
 	exit;
 }
