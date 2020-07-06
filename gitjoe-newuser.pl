@@ -53,7 +53,7 @@ EOF"
 	system(
 		'/usr/local/bin/dash',
 		'-c',
-		'/bin/chmod -v 700 ' . $home_dir . '.ssh/';
+		'/bin/chmod -v 700 ' . $home_dir . '.ssh/'
 		);
 	open(my $fh, '>:encoding(UTF-8)', $home_dir . '.ssh/authorized_keys');
 	print $fh $sshkey . '\n';
