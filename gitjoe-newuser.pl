@@ -46,6 +46,11 @@ ls";
 	open(my $fh, '>:encoding(UTF-8)', $home_dir . 'git-shell-commands');
 	print $fh $gitshell_cmds;
 	close($fh);
+	system(
+		'/usr/local/bin/dash',
+		'-c',
+		'/bin/chmod +x ' . $home_dir . 'git-shell-commands'
+		);
 }
 
 main();
