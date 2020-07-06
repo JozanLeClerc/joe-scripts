@@ -23,6 +23,7 @@ y
 y
 EOF"
 		);
+	exit;
 }
 
 main();

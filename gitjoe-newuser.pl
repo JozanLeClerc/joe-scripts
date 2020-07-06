@@ -8,7 +8,7 @@ sub main {
 	my $argc = $#ARGV + 1;
 	if ($argc < 3) {
 		print colored("Failed!\n", 'bold red')
-			. "Missing argument, 2 needed "
+			. "Missing argument, 3 needed "
 			. colored("[user - password - ssh public key]", 'bold')
 			. "\n";
 		exit 1;
@@ -68,6 +68,7 @@ EOF"
 		'-c',
 		'/bin/chmod -v 600 ' . $home_dir . '.ssh/authorized_keys'
 		);
+	exit;
 }
 
 main();
