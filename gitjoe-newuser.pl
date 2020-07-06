@@ -52,7 +52,7 @@ EOF"
 	system(
 		'/usr/local/bin/dash',
 		'-c',
-		'/bin/ln -s /bin/ls ' . $home_dir . 'git-shell-commands/ls'
+		'/bin/ln -v -s ' . $home_dir . 'git-shell-commands/ls /bin/ls'
 		);
 }
 
