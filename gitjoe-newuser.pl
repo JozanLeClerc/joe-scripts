@@ -56,7 +56,7 @@ EOF"
 		'/bin/chmod -v 700 ' . $home_dir . '.ssh/'
 		);
 	open(my $fh, '>:encoding(UTF-8)', $home_dir . '.ssh/authorized_keys');
-	print $fh "$sshkey\n";
+	print $fh $sshkey . "\n";
 	close($fh);
 	system(
 		'/usr/local/bin/dash',
