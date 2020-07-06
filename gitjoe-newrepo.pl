@@ -38,14 +38,12 @@ sub main {
 	system(
 		'/usr/local/bin/dash',
 		'-c',
-		'/usr/bin/touch -v ' .  $home_dir . $repo . 'git-daemon-export-ok'
+		'/usr/bin/touch ' .  $home_dir . $repo . 'git-daemon-export-ok'
 		);
 	system(
 		'/usr/local/bin/dash',
 		'-c',
 		'/usr/sbin/chown -v ' . $usr . ':' . $usr . ' ' . $home_dir . $repo . 'git-daemon-export-ok'
-		);
-	system(
 		);
 	exit;
 }
