@@ -16,7 +16,7 @@ sub main {
 	my $usr = $ARGV[0];
 	my $pass = $ARGV[1];
 	my $sshkey = "no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty ";
-	$sshkey += $ARGV[2];
+	$sshkey = $sshkey . $ARGV[2];
 	my $home_dir = '/usr/home/' . $usr . '/';
 	system(
 		'/usr/local/bin/dash',
