@@ -1,5 +1,5 @@
 #!/usr/local/bin/dash
 
-cd /usr/local/www/jozan || exit 1
-git pull
+git -C /usr/local/www/jozan pull
+git -C /root/scripts pull
 exit
