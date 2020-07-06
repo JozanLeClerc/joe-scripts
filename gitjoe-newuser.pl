@@ -48,7 +48,7 @@ EOF"
 	system(
 		'/usr/local/bin/dash',
 		'-c',
-		'/bin/chown -v ' . $usr . ':' . $usr . ' ' . $home_dir . '.ssh'
+		'/usr/sbin/chown -v ' . $usr . ':' . $usr . ' ' . $home_dir . '.ssh'
 		);
 	system(
 		'/usr/local/bin/dash',
@@ -61,7 +61,7 @@ EOF"
 	system(
 		'/usr/local/bin/dash',
 		'-c',
-		'/bin/chown -v ' . $usr . ':' . $usr . ' ' . $home_dir . '.ssh/authorized_keys'
+		'/usr/sbin/chown -v ' . $usr . ':' . $usr . ' ' . $home_dir . '.ssh/authorized_keys'
 		);
 	system(
 		'/usr/local/bin/dash',
