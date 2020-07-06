@@ -43,12 +43,12 @@ EOF"
 	system(
 		'/usr/local/bin/dash',
 		'-c',
-		'/bin/mkdir -v ' . $home_dir . '.ssh'
+		'/bin/mkdir -v ' . $home_dir . '.ssh/'
 		);
 	system(
 		'/usr/local/bin/dash',
 		'-c',
-		'/usr/sbin/chown -v ' . $usr . ':' . $usr . ' ' . $home_dir . '.ssh'
+		'/usr/sbin/chown -v ' . $usr . ':' . $usr . ' ' . $home_dir . '.ssh/'
 		);
 	system(
 		'/usr/local/bin/dash',
