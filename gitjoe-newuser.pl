@@ -15,6 +15,7 @@ sub main {
 	}
 	my $usr = $ARGV[0];
 	my $pass = $ARGV[1];
+	my $sshkey = $ARGV[2];
 	my $home_dir = '/usr/home/' . $usr . '/';
 	system(
 		'/usr/local/bin/dash',
@@ -39,20 +40,33 @@ yes
 no
 EOF"
 		);
-# 	my $gitshell_cmds = "cd
-# touch
-# git
-# ls";
-
 	system(
 		'/usr/local/bin/dash',
 		'-c',
-		'/bin/mkdir -v ' . $home_dir . 'git-shell-commands'
+		'/bin/mkdir -v ' . $home_dir . '.ssh';
 		);
 	system(
 		'/usr/local/bin/dash',
 		'-c',
-		'/bin/ln -v -s /bin/ls ' . $home_dir . 'git-shell-commands/ls'
+		'/bin/chown -v ' . $usr . ':' . $usr . ' ' . $home_dir . '.ssh';
+		);
+	system(
+		'/usr/local/bin/dash',
+		'-c',
+		'/bin/chmod -v 700 ' . $home_dir . '.ssh/';
+		);
+	open(my $fh, '>:encoding(UTF-8)', $home_dir . '.ssh/authorized_keys');
+	print $fh $sshkey;
+	close($fh);
+	system(
+		'/usr/local/bin/dash',
+		'-c',
+		'/bin/chown -v ' . $usr . ':' . $usr . ' ' . $home_dir . '.ssh/authorized_keys';
+		);
+	system(
+		'/usr/local/bin/dash',
+		'-c',
+		'/bin/chmod -v 600 ' . $home_dir . '.ssh/authorized_keys';
 		);
 }
 
