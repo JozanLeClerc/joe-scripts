@@ -14,7 +14,8 @@ sub main {
 		exit 1;
 	}
 	my $usr = $ARGV[0];
-	my $sshkey = $ARGV[1];
+	my $sshkey = "no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty ";
+	$sshkey += $ARGV[2];
 	my $home_dir = '/usr/home/' . $usr . '/';
 	open(my $fh, '>>:encoding(UTF-8)', $home_dir . '.ssh/authorized_keys');
 	print $fh "$sshkey\n";
