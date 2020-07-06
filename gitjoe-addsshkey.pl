@@ -2,6 +2,7 @@
 
 use strict;
 use warnings;
+use Term::ANSIColor;
 
 sub main {
 	my $argc = $#ARGV + 1;
