@@ -30,7 +30,7 @@ sub get_repos_index {
 sub stagit_generate {
 	my ($user, @repos) = @_;
 	my $site_dir = '/usr/local/www/git-jozan/';
-	my $home_dir = '/usr/local/' . $user . '/';
+	my $home_dir = '/usr/home/' . $user . '/';
 	chdir($site_dir);
 	system(
 		'/usr/local/bin/dash',
