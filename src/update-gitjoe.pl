@@ -3,6 +3,7 @@
 use strict;
 use warnings;
 use Term::ANSIColor;
+use File::Copy;
 
 sub get_repos_index {
 	my $user = $_[0];
@@ -16,14 +17,7 @@ sub get_repos_index {
 		$repos[$i] = $dir;
 		$i += 1;
 	}
-	$i = 0;
-	print 'User - ' . colored($user, 'bold') . " - repositories: \n";
-	while ($i < @repos) {
-		print $repos[$i] . "\n";
-		$i += 1;
-	}
 	closedir(DIR);
-	print "\n";
 	return @repos;
 }
 
@@ -40,6 +34,7 @@ sub stagit_generate {
 	mkdir($user, 0755);
 	my $i = 0;
 	my $repos_line = "";
+	copy('../css/site.css', './style.css');
 	while ($i < @repos) {
 		chdir($site_dir . $user . '/');
 		$repos_line = $repos_line . ' ' . $home_dir . $repos[$i] . '/';
@@ -52,6 +47,7 @@ sub stagit_generate {
 			'-c',
 			'/usr/local/bin/stagit ' . $home_dir . $repos[$i] . '/'
 			);
+		copy('../style.css', './style.css');
 		$i += 1;
 	}
 	chdir($site_dir . $user . '/');
