@@ -13,6 +13,7 @@ sub get_repos_index {
 	while (my $dir = readdir(DIR)) {
 		next if ($dir =~ m/^\./);
 		next if (!(-e $homedir . $dir . '/git-daemon-export-ok'));
+		$repos[$i] = $dir;
 		$i += 1;
 	}
 	$i = 0;
