@@ -74,7 +74,7 @@ sub main {
 		system(
 			'/usr/local/bin/dash',
 			'-c',
-			'/usr/sbin/chown -v ' . $usr . ':' . $usr . ' ' . $home_dir . $repo . 'desc'
+			'/usr/sbin/chown -v ' . $usr . ':' . $usr . ' ' . $home_dir . $repo . 'description'
 			);
 	}
 	else {
@@ -84,7 +84,7 @@ sub main {
 		system(
 			'/usr/local/bin/dash',
 			'-c',
-			'/usr/sbin/chown -v ' . $usr . ':' . $usr . ' ' . $home_dir . $repo . 'desc'
+			'/usr/sbin/chown -v ' . $usr . ':' . $usr . ' ' . $home_dir . $repo . 'description'
 			);
 	}
 	exit;
