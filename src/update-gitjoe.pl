@@ -38,10 +38,10 @@ sub stagit_generate {
 		'/bin/rm -rf ' . $user . '/'
 		);
 	mkdir($user, 0755);
-	chdir($site_dir . $user . '/');
 	my $i = 0;
 	my $repos_line = "";
 	while ($i < @repos) {
+		chdir($site_dir . $user . '/');
 		$repos_line = $repos_line . ' ' . $home_dir . $repos[$i] . '/';
 		substr($repos[$i], -4) = "";
 		mkdir($repos[$i], 0755);
