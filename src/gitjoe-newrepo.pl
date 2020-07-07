@@ -15,6 +15,7 @@ sub main {
 	}
 	my $usr = $ARGV[0];
 	my $repo = $ARGV[1];
+	my $desc = "";
 	if ($argc >= 3) {
 		my $desc = $ARGV[2];
 	}
