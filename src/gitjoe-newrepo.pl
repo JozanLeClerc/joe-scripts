@@ -17,7 +17,7 @@ sub main {
 	my $repo = $ARGV[1];
 	my $desc = "";
 	if ($argc >= 3) {
-		my $desc = $ARGV[2];
+		$desc = $ARGV[2];
 	}
 	my $home_dir = '/usr/home/' . $usr . '/';
 	if (substr($repo, -4) ne '.git') {
