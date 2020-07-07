@@ -49,7 +49,7 @@ sub main {
 		'-c',
 		'/usr/sbin/chown -v ' . $usr . ':' . $usr . ' ' . $home_dir . $repo . 'git-daemon-export-ok'
 		);
-	open(my $owner_fh, '>:encoding(utf-8)', $home_dir . $repo . 'owner');
+	open(my $owner_fh, '>:encoding(UTF-8)', $home_dir . $repo . 'owner');
 	print $owner_fh $usr;
 	close($owner_fh);
 	system(
@@ -57,7 +57,7 @@ sub main {
 		'-c',
 		'/usr/sbin/chown -v ' . $usr . ':' . $usr . ' ' . $home_dir . $repo . 'owner'
 		);
-	open(my $url_fh, '>:encoding(utf-8)', $home_dir . $repo . 'url');
+	open(my $url_fh, '>:encoding(UTF-8)', $home_dir . $repo . 'url');
 	substr($repo, -1) = "";
 	print $url_fh 'git://jozanleclerc.xyz/' . $usr . '/' . $repo;
 	close($url_fh);
@@ -68,7 +68,7 @@ sub main {
 		'/usr/sbin/chown -v ' . $usr . ':' . $usr . ' ' . $home_dir . $repo . 'url'
 		);
 	if ($argc >= 3) {
-		open(my $desc_fh, '>:encoding(utf-8)', $home_dir . $repo . 'description');
+		open(my $desc_fh, '>:encoding(UTF-8)', $home_dir . $repo . 'description');
 		print $desc_fh $desc;
 		close($desc_fh);
 		system(
@@ -78,7 +78,7 @@ sub main {
 			);
 	}
 	else {
-		open(my $desc_fh, '>:encoding(utf-8)', $home_dir . $repo . 'description');
+		open(my $desc_fh, '>:encoding(UTF-8)', $home_dir . $repo . 'description');
 		print $desc_fh 'No description yet';
 		close($desc_fh);
 		system(
