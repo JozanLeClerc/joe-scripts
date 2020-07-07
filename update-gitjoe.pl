@@ -17,12 +17,25 @@ sub get_repos_index {
 		$i += 1;
 	}
 	$i = 0;
+	print 'User: ' . colored($user, 'bold') . " repos: \n";
 	while ($i < @repos) {
 		print $repos[$i] . "\n";
 		$i += 1;
 	}
 	closedir(DIR);
+	print "\n";
 	return @repos;
+}
+
+sub stagit_generate {
+	my $user = $_[0];
+	my @repos = $_[1];
+	my $i = 0;
+	while ($i < @repos) {
+		print $repos[$i];
+		$i += 1;
+	}
+	return;
 }
 
 sub main {
@@ -40,6 +53,7 @@ sub main {
 	$i = 0;
 	while ($i < @users) {
 		my @repos = get_repos_index($users[$i]);
+		stagit_generate($users[$i], @repos);
 		$i += 1;
 	}
 	exit;
