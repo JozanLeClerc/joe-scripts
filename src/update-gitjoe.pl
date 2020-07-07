@@ -46,12 +46,12 @@ sub stagit_generate {
 		substr($repos[$i], -4) = "";
 		mkdir($repos[$i], 0755);
 		chdir($site_dir . $user . '/' . $repos[$i] . '/');
+		$repos[$i] = $repos[$i] . '.git';
 		system(
 			'/usr/local/bin/dash',
 			'-c',
 			'/usr/local/bin/stagit ' . $home_dir . $repos[$i] . '/'
 			);
-		$repos[$i] = $repos[$i] . '.git';
 		$i += 1;
 	}
 	chdir($site_dir . $user . '/');
