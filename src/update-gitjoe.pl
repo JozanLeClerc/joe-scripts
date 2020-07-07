@@ -14,12 +14,12 @@ sub get_repos_index {
 	while (my $dir = readdir(DIR)) {
 		next if ($dir =~ m/^\./);
 		next if (!(-e $home_dir . $dir . '/git-daemon-export-ok'));
-		print $dir;
 		$repos[$i] = $dir;
 		$i += 1;
 	}
 	closedir(DIR);
-	return @repos;
+	my @sorted_repos = sort @repos;
+	return @sorted_repos;
 }
 
 sub stagit_generate {
