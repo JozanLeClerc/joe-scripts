@@ -54,8 +54,10 @@ sub main {
 		'/usr/sbin/chown -v ' . $usr . ':' . $usr . ' ' . $home_dir . $repo . 'owner'
 		);
 	open(my $url_fh, '>:encoding(utf-8)', $home_dir . $repo . 'url');
+	chomp($repo);
 	print $url_fh 'git://jozanleclerc.xyz/' . $usr . '/' . chomp($repo);
 	close($url_fh);
+	$repo = $repo . '/';
 	system(
 		'/usr/local/bin/dash',
 		'-c',
