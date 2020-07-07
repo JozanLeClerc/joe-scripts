@@ -17,7 +17,7 @@ sub get_repos_index {
 		$i += 1;
 	}
 	$i = 0;
-	print 'User: ' . colored($user, 'bold') . " repos: \n";
+	print 'User - ' . colored($user, 'bold') . " - repositories: \n";
 	while ($i < @repos) {
 		print $repos[$i] . "\n";
 		$i += 1;
@@ -29,10 +29,10 @@ sub get_repos_index {
 
 sub stagit_generate {
 	my $user = $_[0];
-	my @repos = $_[1];
+	my @repos = @_[1];
 	my $i = 0;
 	while ($i < @repos) {
-		print $repos[$i];
+		print colored($repos[$i], 'bold red') . "\n";
 		$i += 1;
 	}
 	return;
