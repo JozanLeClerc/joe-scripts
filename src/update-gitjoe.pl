@@ -29,12 +29,37 @@ sub get_repos_index {
 
 sub stagit_generate {
 	my ($user, @repos) = @_;
-	my $i = 0;
 	my $site_dir = '/usr/local/www/git-jozan/';
+	my $home_dir = '/usr/local/' . $user . '/';
 	chdir($site_dir);
+	system(
+		'/usr/local/bin/dash',
+		'-c',
+		'/bin/rm -rf ' . $user . '/'
+		);
+	mkdir($user, 0755);
+	chdir($site_dir . $user . '/');
+	my $i = 0;
+	my $repos_line = "";
 	while ($i < @repos) {
+		$repos_line = $repos_line . ' ' . $home_dir . $repos[$i] . '/';
+		substr($repos[$i], -4) = "";
+		mkdir($repos[$i], 0755);
+		$repos[$i] = $repos[$i] . '.git';
+		chdir($site_dir . $user . '/' . $repos[$i] . '/');
+		system(
+			'/usr/local/bin/dash',
+			'-c',
+			'/usr/local/bin/stagit ' . $home_dir . $repos[$i] . '/'
+			);
 		$i += 1;
 	}
+	chdir($site_dir . $user . '/');
+	system(
+		'/usr/local/bin/dash',
+		'-c',
+		'/usr/local/bin/stagit-index ' . $repos_line . '> index.html'
+		);
 	return;
 }
 
