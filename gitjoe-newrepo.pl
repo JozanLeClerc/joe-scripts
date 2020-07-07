@@ -55,7 +55,7 @@ sub main {
 		);
 	open(my $url_fh, '>:encoding(utf-8)', $home_dir . $repo . 'url');
 	substr($repo, -1) = "";
-	print $url_fh 'git://jozanleclerc.xyz/' . $usr . '/' . chomp($repo);
+	print $url_fh 'git://jozanleclerc.xyz/' . $usr . '/' . $repo;
 	close($url_fh);
 	$repo = $repo . '/';
 	system(
