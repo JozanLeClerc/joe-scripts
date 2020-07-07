@@ -24,6 +24,10 @@ sub main {
 	open(my $desc_fh, '>:encoding(UTF-8)', $home_dir . $repo . 'description');
 	print $desc_fh $desc;
 	close($desc_fh);
+	system(
+		'/usr/local/bin/dash',
+		'-c',
+		'/usr/sbin/chown -v ' . $usr . ':' . $usr . ' ' . $home_dir . $repo . 'description'
 	exit;
 }
 
