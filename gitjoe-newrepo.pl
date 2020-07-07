@@ -45,6 +45,22 @@ sub main {
 		'-c',
 		'/usr/sbin/chown -v ' . $usr . ':' . $usr . ' ' . $home_dir . $repo . 'git-daemon-export-ok'
 		);
+	open(my $owner_fh, '>:encoding(utf-8)', $home_dir . $repo . 'owner');
+	print $owner_fh $usr;
+	close($owner_fh);
+	system(
+		'/usr/local/bin/dash',
+		'-c',
+		'/usr/sbin/chown -v ' . $usr . ':' . $usr . ' ' . $home_dir . $repo . 'owner'
+		);
+	open(my $url_fh, '>:encoding(utf-8)', $home_dir . $repo . 'url');
+	print $url_fh 'git://jozanleclerc.xyz/' . $usr . '/' . chomp($repo);
+	close($url_fh);
+	system(
+		'/usr/local/bin/dash',
+		'-c',
+		'/usr/sbin/chown -v ' . $usr . ':' . $usr . ' ' . $home_dir . $repo . 'url'
+		);
 	exit;
 }
 
