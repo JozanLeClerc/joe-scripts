@@ -29,7 +29,7 @@ sub get_repos_index {
 
 sub stagit_generate {
 	my $user = $_[0];
-	my @repos = @_[1];
+	my @repos = @_ + 1;
 	my $i = 0;
 	while ($i < @repos) {
 		print colored($repos[$i], 'bold red') . "\n";
