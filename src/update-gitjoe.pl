@@ -6,13 +6,13 @@ use Term::ANSIColor;
 
 sub get_repos_index {
 	my $user = $_[0];
-	my $homedir = '/usr/home/' . $user . '/';
-	opendir(DIR, $homedir);
+	my $home_dir = '/usr/home/' . $user . '/';
+	opendir(DIR, $home_dir);
 	my @repos;
 	my $i = 0;
 	while (my $dir = readdir(DIR)) {
 		next if ($dir =~ m/^\./);
-		next if (!(-e $homedir . $dir . '/git-daemon-export-ok'));
+		next if (!(-e $home_dir . $dir . '/git-daemon-export-ok'));
 		$repos[$i] = $dir;
 		$i += 1;
 	}
@@ -30,17 +30,18 @@ sub get_repos_index {
 sub stagit_generate {
 	my ($user, @repos) = @_;
 	my $i = 0;
+	my $site_dir = '/usr/local/www/git-jozan/';
+	chdir($site_dir);
 	while ($i < @repos) {
-		print colored($repos[$i], 'bold red') . "\n";
 		$i += 1;
 	}
 	return;
 }
 
 sub main {
-	my $homedir = '/usr/home/';
+	my $home_dir = '/usr/home/';
 	my @users;
-	opendir(DIR, $homedir);
+	opendir(DIR, $home_dir);
 	my $i = 0;
 	while (my $dir = readdir(DIR)) {
 		next if ($dir eq 'git-ro');
