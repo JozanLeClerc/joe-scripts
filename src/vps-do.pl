@@ -16,6 +16,7 @@ sub main {
 	my $called_script = '';
 	my $word = '';
 	my $ssh_boy = 'root@jozanleclerc.xyz';
+	my $argv_line = '';
 	if (
 		$ARGV[0] eq 'addsshkey' ||
 		$ARGV[0] eq 'adduser' ||
@@ -55,6 +56,7 @@ sub main {
 		print "Arguments:\n";
 		my $i = 1;
 		while ($i < $argc) {
+			$argv_line = $argv_line . ' "' . $ARGV[$i] . '"';
 			print colored($ARGV[$i], 'bold yellow') . "\n";
 			$i += 1;
 		}
@@ -64,10 +66,10 @@ sub main {
 	system(
 		$dash,
 		'-c',
-		'ssh ' . $ssh_boy . " << EOF 2>&1
-ls -lh
-uname -n
+		'ssh ' . $ssh_boy . " << EOF
+" . $called_script . $argv_line . "
 exit
+EOF
 "
 		);
 	exit;
