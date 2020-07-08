@@ -72,6 +72,7 @@ exit
 EOF
 "
 		);
+	print "Done.";
 	exit;
 }
 
