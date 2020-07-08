@@ -1,3 +1,35 @@
 #+TITLE: My server scripts
 
-These are a bunch of scripts for my VPS server.
+These are a bunch of scripts for my VPS server. They might only run on BSD servers.
+
+* Dependecies
+- *BSD*-type operating system
+- ~perl~
+- ~dash~ shell
+- ~git~
+- ~stagit~
+
+* Functions
+The source tree is the following:
+
+#+BEGIN_SRC shell
+└── src
+    ├── distant
+    ├── gitjoe
+    │   ├── addsshkey.pl
+    │   ├── chdesc.pl
+    │   ├── chowner.pl
+    │   ├── newrepo.pl
+    │   ├── newuser.pl
+    │   ├── rmrepo.pl
+    │   └── rmuser.pl
+    ├── other
+    │   └── git-ro-daemon.pl
+    └── update
+        ├── gitjoe.pl
+        └── serv.pl
+#+END_SRC
+
+- ~gitjoe/~ scripts are meant to be run on the server directly. They are tools to add GitJoe users, repos,
+change descritpion, etc.
+- ~update/~ scripts are run via cron jobs. They update the GitJoe repositories front-end website via ~stagit~ and pull ~master~ branches of the websites via ~git~
