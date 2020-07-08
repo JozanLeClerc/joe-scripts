@@ -62,8 +62,10 @@ sub stagit_generate {
 	system(
 		'/usr/local/bin/dash',
 		'-c',
-		"sed 's/log.html/files.html/g' index.html >index.html"
+		"sed 's/log.html/files.html/g' index.html >sedded_index.html"
 		);
+	copy('./sedded_index.html', './index.html');
+	unlink('./sedded_index.html');
 	return;
 }
 
