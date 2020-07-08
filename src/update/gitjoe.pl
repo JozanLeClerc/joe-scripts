@@ -35,7 +35,7 @@ sub stagit_generate {
 	mkdir($user, 0755);
 	my $i = 0;
 	my $repos_line = "";
-	copy('./css/site.css', './' . $user . '/style.css');
+	copy('./css/gitjoe.css', './' . $user . '/style.css');
 	while ($i < @repos) {
 		chdir($site_dir . $user . '/');
 		$repos_line = $repos_line . ' ' . $home_dir . $repos[$i] . '/';
