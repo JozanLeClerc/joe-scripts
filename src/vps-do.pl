@@ -15,6 +15,7 @@ sub main {
 	my $scripts_dir = '/root/scripts/src/';
 	my $called_script = '';
 	my $word = '';
+	my $ssh_boy = 'root@jozanleclerc.xyz';
 	if (
 		$ARGV[0] eq 'addsshkey' ||
 		$ARGV[0] eq 'chdesc' ||
@@ -28,7 +29,7 @@ sub main {
 	}
 	elsif (
 		$ARGV[0] eq "update-gitjoe" ||
-		$ARGV[0] eq "update-serv"
+		$ARGV[0] eq "update-vps"
 		) {
 		$word = $ARGV[0];
 		$word =~ s/update-//;
@@ -46,10 +47,10 @@ sub main {
 			. colored("rmrepo\n", 'bold green')
 			. colored("rmuser\n", 'bold green')
 			. colored("update-gitjoe\n", 'bold green')
-			. colored("update-serv\n", 'bold green');
+			. colored("update-vps\n", 'bold green');
 		exit 2;
 	}
-	print "Calling " . colored($called_script, 'bold green') . "...\n";
+	print "Calling " . colored($called_script, 'bold green') . " via " . colored($ssh_boy, 'bold') . "...\n";
 	exit;
 }
 

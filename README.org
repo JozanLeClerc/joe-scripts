@@ -25,12 +25,13 @@ The source tree is the following:
     │   └── rmuser.pl
     ├── other
     │   └── git-ro-daemon.pl
-    └── update
-        ├── gitjoe.pl
-        └── serv.pl
+    ├── update
+    │   ├── gitjoe.pl
+    │   └── vps.pl
+    └── vps-do.pl
 #+END_SRC
 
 - ~gitjoe/~ scripts are meant to be run on the server directly. They are tools to add GitJoe users, repos, change descritpion, etc.
-- ~distant/~ scripts are meant to be run on your home machine. They simply connect via ~ssh~ to your distant server and run the according script so it even skips the ~ssh~ phase.
 - ~update/~ scripts are run via cron jobs. They update the GitJoe repositories front-end website via ~stagit~ and pull ~master~ branches of the websites via ~git~.
-- ~other/~ script is just a single line the start the ~git daemon~ to serve public repositories.
+# - ~other/~ script is just a single line the start the ~git daemon~ to serve public repositories.
+- The ~vps-do.pl~ script allows you to execute one of the distant scripts on your home terminal, opening and closing the ~ssh~ session for you.
