@@ -36,6 +36,7 @@ sub stagit_generate {
 	my $i = 0;
 	my $repos_line = "";
 	copy('./css/gitjoe.css', './' . $user . '/style.css');
+	copy('./img/logo.png', './' . $user . '/logo.png');
 	while ($i < @repos) {
 		chdir($site_dir . $user . '/');
 		$repos_line = $repos_line . ' ' . $home_dir . $repos[$i] . '/';
@@ -49,6 +50,7 @@ sub stagit_generate {
 			'/usr/local/bin/stagit ' . $home_dir . $repos[$i] . '/'
 			);
 		copy('../style.css', './style.css');
+		copy('../logo.png', './logo.png');
 		$i += 1;
 	}
 	chdir($site_dir . $user . '/');
