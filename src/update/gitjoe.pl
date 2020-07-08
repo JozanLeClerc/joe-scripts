@@ -59,6 +59,11 @@ sub stagit_generate {
 		'-c',
 		'/usr/local/bin/stagit-index ' . $repos_line . '> index.html'
 		);
+	system(
+		'/usr/local/bin/dash',
+		'-c',
+		"sed 's/log.html/files.html/g' index.html >index.html"
+		);
 	return;
 }
 
