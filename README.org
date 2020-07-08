@@ -6,6 +6,7 @@ These are a bunch of scripts for my VPS server. They might only run on BSD serve
 - *BSD*-type operating system
 - ~perl~
 - ~dash~ shell
+- ~ssh~
 - ~git~
 - ~stagit~
 
@@ -30,6 +31,7 @@ The source tree is the following:
         └── serv.pl
 #+END_SRC
 
-- ~gitjoe/~ scripts are meant to be run on the server directly. They are tools to add GitJoe users, repos,
-change descritpion, etc.
-- ~update/~ scripts are run via cron jobs. They update the GitJoe repositories front-end website via ~stagit~ and pull ~master~ branches of the websites via ~git~
+- ~gitjoe/~ scripts are meant to be run on the server directly. They are tools to add GitJoe users, repos, change descritpion, etc.
+- ~distant/~ scripts are meant to be run on your home machine. They simply connect via ~ssh~ to your distant server and run the according script so it even skips the ~ssh~ phase.
+- ~update/~ scripts are run via cron jobs. They update the GitJoe repositories front-end website via ~stagit~ and pull ~master~ branches of the websites via ~git~.
+- ~other/~ script is just a single line the start the ~git daemon~ to serve public repositories.
