@@ -54,7 +54,7 @@ sub stagit_generate {
 		system(
 			'/usr/local/bin/dash',
 			'-c',
-			'/usr/local/bin/stagit -c ' . $site_dir . $user . $repos[$i] . '.cache -l 200 ' . $home_dir . $repos[$i] . '/'
+			'/usr/local/bin/stagit -c ' . $site_dir . $user . $repos[$i] . '.cache ' . $home_dir . $repos[$i] . '/'
 			);
 		copy('../style.css', './style.css');
 		copy('../logo.png', './logo.png');
