@@ -44,7 +44,7 @@ sub stagit_generate {
 		mkdir($repos[$i], 0755);
 		chdir($site_dir . $user . '/' . $repos[$i] . '/');
 		$repos[$i] = $repos[$i] . '.git';
-		mkdir($site_dir . $user . '/', 0755);
+		mkdir($site_dir . 'cache/' .  $user . '/', 0755);
 		print "Repoing " . $repos[$i] . "\n";
 		system(
 			'/usr/local/bin/dash',
