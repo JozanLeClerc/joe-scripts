@@ -27,12 +27,14 @@ sub stagit_generate {
 	my $site_dir = '/usr/local/www/git-jozan/';
 	my $home_dir = '/usr/home/' . $user . '/';
 	chdir($site_dir);
-	system(
-		'/usr/local/bin/dash',
-		'-c',
-		'/bin/rm -rf ' . $user . '/'
-		);
-	mkdir($user, 0755);
+	# system(
+	# 	'/usr/local/bin/dash',
+	# 	'-c',
+	# 	'/bin/rm -rf ' . $user . '/'
+	# 	);
+	if (!(-e $user . '/')) {
+		mkdir($user . '/', 0755);
+	}
 	my $i = 0;
 	my $repos_line = "";
 	copy('./css/gitjoe.css', './' . $user . '/style.css');
@@ -41,16 +43,11 @@ sub stagit_generate {
 		chdir($site_dir . $user . '/');
 		$repos_line = $repos_line . ' ' . $home_dir . $repos[$i] . '/';
 		substr($repos[$i], -4) = "";
-		mkdir($repos[$i], 0755);
+		if (!(-e $repos[$i] . '/')) {
+			mkdir($repos[$i] . '/', 0755);
+		}
 		chdir($site_dir . $user . '/' . $repos[$i] . '/');
 		$repos[$i] = $repos[$i] . '.git';
-		mkdir($site_dir . 'cache/' .  $user . '/', 0755);
-		print "Repoing " . $repos[$i] . "\n";
-		system(
-			'/usr/local/bin/dash',
-			'-c',
-			'/usr/bin/touch ' . $site_dir . $user . '/' . $repos[$i] . '.cache'
-			);
 		system(
 			'/usr/local/bin/dash',
 			'-c',
