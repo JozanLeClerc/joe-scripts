@@ -47,8 +47,9 @@ sub stagit_generate {
 		system(
 			'/usr/local/bin/dash',
 			'-c',
-			'/usr/local/bin/stagit ' . $home_dir . $repos[$i] . '/'
+			'/usr/local/bin/stagit -l 400 ' . $home_dir . $repos[$i] . '/'
 			);
+		print "repoed\n";
 		copy('../style.css', './style.css');
 		copy('../logo.png', './logo.png');
 		$i += 1;
@@ -59,7 +60,6 @@ sub stagit_generate {
 		'-c',
 		'/usr/local/bin/stagit-index ' . $repos_line . '> index.html'
 		);
-	print "/usr/bin/sed 's/<td>" . $user . "<\\/td>/<td class=\"td_author\">" . $user . "<\\/td>/g' index.html >sedded_index.html";
 	system(
 		'/usr/local/bin/dash',
 		'-c',
