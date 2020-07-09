@@ -49,6 +49,11 @@ sub stagit_generate {
 		system(
 			'/usr/local/bin/dash',
 			'-c',
+			'/usr/bin/touch ' . $site_dir . $user . $repos[$i] . '.cache'
+			);
+		system(
+			'/usr/local/bin/dash',
+			'-c',
 			'/usr/local/bin/stagit -c ' . $site_dir . $user . $repos[$i] . '.cache -l 200 ' . $home_dir . $repos[$i] . '/'
 			);
 		copy('../style.css', './style.css');
