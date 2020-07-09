@@ -68,7 +68,7 @@ sub stagit_generate {
 	system(
 		'/usr/local/bin/dash',
 		'-c',
-		"/usr/bin/sed 's/<span class=\"desc\">Repositories<\\/span>/<span class=\"desc\"><h1>Repositories<\\/h1><\\/span>' sedded_index.html >re_sedded_index.html"
+		"/usr/bin/sed 's/<span class=\"desc\">Repositories<\\/span>/<span class=\"desc\"><h1>Repositories<\\/h1><\\/span>/' sedded_index.html >re_sedded_index.html"
 		);
 	unlink('./sedded_index.html');
 	system(
