@@ -59,15 +59,16 @@ sub stagit_generate {
 		'-c',
 		'/usr/local/bin/stagit-index ' . $repos_line . '> index.html'
 		);
+	print "/usr/bin/sed 's/<td>" . $user . "<\\/td>/<td class=\"td_author\">" . $user . "<\\/td>/g' index.html >sedded_index.html";
 	system(
 		'/usr/local/bin/dash',
 		'-c',
-		"sed 's/<td>" . $user . "<\\/td>/<td class=\"td_author\">" . $user . "<\\/td>/g' index.html >sedded_index.html"
+		"/usr/bin/sed 's/<td>" . $user . "<\\/td>/<td class=\"td_author\">" . $user . "<\\/td>/g' index.html >sedded_index.html"
 		);
 	system(
 		'/usr/local/bin/dash',
 		'-c',
-		"sed 's/log.html/files.html/g' sedded_index.html >index.html"
+		"/usr/bin/sed 's/log.html/files.html/g' sedded_index.html >index.html"
 		);
 	# copy('./sedded_index.html', './index.html');
 	unlink('./sedded_index.html');
