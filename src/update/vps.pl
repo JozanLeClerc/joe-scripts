@@ -20,6 +20,7 @@ sub main {
 		'-c',
 		'git -C /root/scripts pull >/dev/null 2>&1'
 		);
+	print "Updated jozan website, git website and scripts.\n";
 	exit;
 }
 
