@@ -48,11 +48,11 @@ sub stagit_generate {
 		}
 		chdir($site_dir . $user . '/' . $repos[$i] . '/');
 		$repos[$i] = $repos[$i] . '.git';
-		print "Repoing " . $repos[$i] . "\n";
+		print "Indexing " . $user . '/' . $repos[$i] . ".\n";
 		system(
 			'/usr/local/bin/dash',
 			'-c',
-			'/usr/local/bin/stagit ' . $home_dir . $repos[$i] . '/'
+			'/usr/local/bin/stagit -l 20 ' . $home_dir . $repos[$i] . '/'
 			);
 		copy('../style.css', './style.css');
 		copy('../logo.png', './logo.png');
