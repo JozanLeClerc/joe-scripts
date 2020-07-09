@@ -68,7 +68,7 @@ sub stagit_generate {
 	system(
 		'/usr/local/bin/dash',
 		'-c',
-		"/usr/bin/sed 's/<td><span class=\"desc\">Repositories<\\/span><\\/td>/<td><span class=\"desc\"><h1>" . $user . " - Repositories<\\/h1><\\/span><\\/td><td> - back to <a href=\"https:\\/\\/git.jozanleclerc.xyz\\/\">GitJoe<\\/a><\\/td>/' sedded_index.html >re_sedded_index.html"
+		"/usr/bin/sed 's/<td><span class=\"desc\">Repositories<\\/span><\\/td>/<td><span class=\"desc\"><h1>" . $user . " - Repositories<\\/h1><\\/span><\\/td><\\tr><tr><td>Back to <a href=\"https:\\/\\/git.jozanleclerc.xyz\\/\">GitJoe<\\/a><\\/td><\\/tr>/' sedded_index.html >re_sedded_index.html"
 		);
 	unlink('./sedded_index.html');
 	system(
