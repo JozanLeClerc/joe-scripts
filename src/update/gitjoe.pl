@@ -44,11 +44,11 @@ sub stagit_generate {
 		mkdir($repos[$i] . '/', 0755);
 		chdir($site_dir . $user . '/' . $repos[$i] . '/');
 		$repos[$i] = $repos[$i] . '.git';
-		print "Indexing " . $user . '/' . $repos[$i] . ".\n";
+		print "Indexing " . colored($user . '/' . $repos[$i], 'bold') . ".\n";
 		system(
 			'/usr/local/bin/dash',
 			'-c',
-			'/usr/local/bin/stagit -l 20 ' . $home_dir . $repos[$i] . '/'
+			'/usr/local/bin/stagit ' . $home_dir . $repos[$i] . '/'
 			);
 		copy('../style.css', './style.css');
 		copy('../logo.png', './logo.png');
