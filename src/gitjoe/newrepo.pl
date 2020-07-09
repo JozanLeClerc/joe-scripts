@@ -88,7 +88,7 @@ sub main {
 			);
 	}
 	substr($repo, -1) = "";
-	print "Created git repository " . colored($repo, 'bold green') . " . for user " . colored($usr, 'bold') . ".\n";
+	print "Created git repository " . colored($repo, 'bold green') . " for user " . colored($usr, 'bold') . ".\n";
 	print "Remote url: " . colored($usr . '@jozanleclerc.xyz:' . $repo, 'bold green') . "\n"
 		. "Public clone url: " . colored('git://jozanleclerc.xyz/' . $usr . '/' . $repo, 'bold green') . "\n";
 	exit;
