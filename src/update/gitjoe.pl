@@ -44,10 +44,12 @@ sub stagit_generate {
 		mkdir($repos[$i], 0755);
 		chdir($site_dir . $user . '/' . $repos[$i] . '/');
 		$repos[$i] = $repos[$i] . '.git';
+		mkdir($site_dir . $user . '/', 0755);
+		print "Repoing " . $repos[$i] . "\n";
 		system(
 			'/usr/local/bin/dash',
 			'-c',
-			'/usr/local/bin/stagit -l 200 ' . $home_dir . $repos[$i] . '/'
+			'/usr/local/bin/stagit -c ' . $site_dir . $user . $repos[$i] . '.cache -l 200 ' . $home_dir . $repos[$i] . '/'
 			);
 		copy('../style.css', './style.css');
 		copy('../logo.png', './logo.png');
