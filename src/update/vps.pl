@@ -8,17 +8,17 @@ sub main {
 	system(
 		'/usr/local/bin/dash',
 		'-c',
-		'git -C /usr/local/www/jozan pull origin master>/dev/null 2>&1'
+		'git -C /usr/local/www/jozan pull origin master >/dev/null 2>&1'
 		);
 	system(
 		'/usr/local/bin/dash',
 		'-c',
-		'git -C /usr/local/www/git-jozan pull origin master>/dev/null 2>&1'
+		'git -C /usr/local/www/git-jozan pull origin master >/dev/null 2>&1'
 		);
 	system(
 		'/usr/local/bin/dash',
 		'-c',
-		'git -C /root/scripts pull >/dev/null 2>&1'
+		'git -C /root/scripts pull origin master >/dev/null 2>&1'
 		);
 	print "Updated jozan website, git website and scripts.\n";
 	exit;
