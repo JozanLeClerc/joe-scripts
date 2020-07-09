@@ -29,6 +29,9 @@ sub main {
 		'-c',
 		'/usr/sbin/chown -v ' . $usr . ':' . $usr . ' ' . $home_dir . $repo . 'owner'
 		);
+	substr($repo, -1) = "";
+	print "Changed git repository " . colored($repo, 'bold green') . " owner for user " . colored($usr, 'bold') . ".\n"
+		"New owner: ". colored($owner, 'bold green') . ".\n";
 	exit;
 }
 

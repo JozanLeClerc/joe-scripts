@@ -69,6 +69,7 @@ EOF"
 		'-c',
 		'/bin/chmod -v 600 ' . $home_dir . '.ssh/authorized_keys'
 		);
+	print "Created new git user " . colored($usr, 'bold green') . ".\n";
 	exit;
 }
 

@@ -20,6 +20,7 @@ sub main {
 	open(my $fh, '>>:encoding(UTF-8)', $home_dir . '.ssh/authorized_keys');
 	print $fh "$sshkey\n";
 	close($fh);
+	print "Added new ssh key for user " . colored($usr, 'bold green') . ".\n";
 	exit;
 }
 
