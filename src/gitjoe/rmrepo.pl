@@ -25,6 +25,7 @@ sub main {
 		'-c',
 		'/bin/rm -rfv ' . $home_dir . $repo
 		);
+	print "Deleted git repository " . colored($repo, 'bold yellow') . " for user " . colored($usr, 'bold') . ".\n";
 	exit;
 }
 

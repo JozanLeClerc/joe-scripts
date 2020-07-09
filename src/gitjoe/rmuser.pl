@@ -23,6 +23,7 @@ y
 y
 EOF"
 		);
+	print "Removed git user " . colored($usr, 'bold yellow') . ".\n";
 	exit;
 }
 

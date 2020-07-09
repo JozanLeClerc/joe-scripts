@@ -27,14 +27,12 @@ sub stagit_generate {
 	my $site_dir = '/usr/local/www/git-jozan/';
 	my $home_dir = '/usr/home/' . $user . '/';
 	chdir($site_dir);
-	# system(
-	# 	'/usr/local/bin/dash',
-	# 	'-c',
-	# 	'/bin/rm -rf ' . $user . '/'
-	# 	);
-	if (!(-e $user . '/')) {
-		mkdir($user . '/', 0755);
-	}
+	system(
+		'/usr/local/bin/dash',
+		'-c',
+		'/bin/rm -rf ' . $user . '/'
+		);
+	mkdir($user . '/', 0755);
 	my $i = 0;
 	my $repos_line = "";
 	copy('./css/gitjoe.css', './' . $user . '/style.css');
@@ -43,9 +41,7 @@ sub stagit_generate {
 		chdir($site_dir . $user . '/');
 		$repos_line = $repos_line . ' ' . $home_dir . $repos[$i] . '/';
 		substr($repos[$i], -4) = "";
-		if (!(-e $repos[$i] . '/')) {
-			mkdir($repos[$i] . '/', 0755);
-		}
+		mkdir($repos[$i] . '/', 0755);
 		chdir($site_dir . $user . '/' . $repos[$i] . '/');
 		$repos[$i] = $repos[$i] . '.git';
 		print "Indexing " . $user . '/' . $repos[$i] . ".\n";
