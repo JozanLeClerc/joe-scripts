@@ -24,7 +24,7 @@ sub get_repos_index {
 
 sub stagit_generate {
 	my ($user, @repos) = @_;
-	my $site_dir = '/usr/local/www/git-jozan/';
+	my $site_dir = '/usr/local/www/gitjoe/';
 	my $home_dir = '/usr/home/' . $user . '/';
 	chdir($site_dir);
 	system(
