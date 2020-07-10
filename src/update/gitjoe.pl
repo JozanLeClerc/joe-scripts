@@ -76,6 +76,7 @@ sub stagit_generate {
 		'-c',
 		"/usr/bin/sed 's/log.html/files.html/g' re_sedded_index.html >index.html"
 		);
+	unlink('./re_sedded_index.html');
 	return;
 }
 
