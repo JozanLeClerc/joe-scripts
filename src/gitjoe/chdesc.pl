@@ -30,7 +30,7 @@ sub main {
 		'/usr/sbin/chown -v ' . $usr . ':' . $usr . ' ' . $home_dir . $repo . 'description'
 		);
 	print "Changed git repository " . colored($repo, 'bold green') . " description for user " . colored($usr, 'bold') . ".\n"
-		"New description: ". colored($desc, 'bold green') . ".\n";
+	. "New description: ". colored($desc, 'bold green') . ".\n";
 	exit;
 }
 
