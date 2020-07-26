@@ -24,11 +24,6 @@ sub main {
 	open(my $owner_fh, '>:encoding(utf-8)', $home_dir . $repo . 'owner');
 	print $owner_fh $owner;
 	close($owner_fh);
-	system(
-		'/usr/local/bin/dash',
-		'-c',
-		'/usr/sbin/chown -v ' . $usr . ':' . $usr . ' ' . $home_dir . $repo . 'owner'
-		);
 	substr($repo, -1) = "";
 	print "Changed git repository " . colored($repo, 'bold green') . " owner for user " . colored($usr, 'bold') . ".\n"
 		"New owner: ". colored($owner, 'bold green') . ".\n";
