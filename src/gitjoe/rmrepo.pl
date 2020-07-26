@@ -21,9 +21,9 @@ sub main {
 	}
 	$repo = $repo . '/';
 	system(
-		'/usr/local/bin/dash',
-		'-c',
-		'/bin/rm -rfv ' . $home_dir . $repo
+		'/bin/rm',
+		'-rfv',
+		$home_dir . $repo
 		);
 	print "Deleted git repository " . colored($repo, 'bold yellow') . " for user " . colored($usr, 'bold') . ".\n";
 	exit;
