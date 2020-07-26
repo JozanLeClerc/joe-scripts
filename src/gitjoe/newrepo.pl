@@ -24,21 +24,26 @@ sub main {
 		$repo = $repo . '.git';
 	}
 	$repo = $repo . '/';
+	mkdir $home_dir . $repo, 0755;
 	system(
-		'/usr/local/bin/dash',
-		'-c',
-		'/bin/mkdir -v ' . $home_dir . $repo
+		'/usr/local/bin/git',
+		'-C',
+		$home_dir . $repo,
+		'init',
+		'--bare'
 		);
-	system(
-		'/usr/local/bin/dash',
-		'-c',
-		'/usr/local/bin/git -C ' . $home_dir . $repo . ' init --bare'
+	my (undef, undef, $uid, $gid) = getpwnam($usr);
+	find(
+		sub {
+			chown $uid, $gid, $_;
+		},
+		$home_dir . $repo
 		);
-	system(
-		'/usr/local/bin/dash',
-		'-c',
-		'/usr/sbin/chown -v -R ' . $usr . ':' . $usr . ' ' . $home_dir . $repo
-		);
+	# system(
+	# 	'/usr/local/bin/dash',
+	# 	'-c',
+	# 	'/usr/sbin/chown -v -R ' . $usr . ':' . $usr . ' ' . $home_dir . $repo
+	# 	);
 	system(
 		'/usr/local/bin/dash',
 		'-c',
