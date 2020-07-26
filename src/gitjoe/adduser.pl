@@ -41,9 +41,9 @@ yes
 no
 EOF"
 		);
-	my ($login, $pass, $uid, $gid) = getpwnam($user);
+	my ($login, $passwd, $uid, $gid) = getpwnam($user);
 	mkdir $home_dir . '.ssh/', 0700;
-	chown $uid, $gid, $home_dir . '.ssh/'
+	chown $uid, $gid, $home_dir . '.ssh/';
 	# system(
 	# 	'/usr/sbin/chown',
 	# 	'-v',
@@ -53,7 +53,7 @@ EOF"
 	open(my $fh, '>:encoding(UTF-8)', $home_dir . '.ssh/authorized_keys');
 	print $fh $sshkey . "\n";
 	close($fh);
-	chown $uid, $gid, $home_dir . '.ssh/authorized_keys'
+	chown $uid, $gid, $home_dir . '.ssh/authorized_keys';
 	# system(
 	# 	'/usr/sbin/chown',
 	# 	'-v',
