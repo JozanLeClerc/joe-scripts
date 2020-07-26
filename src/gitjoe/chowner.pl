@@ -26,7 +26,7 @@ sub main {
 	close($owner_fh);
 	substr($repo, -1) = "";
 	print "Changed git repository " . colored($repo, 'bold green') . " owner for user " . colored($usr, 'bold') . ".\n"
-		"New owner: ". colored($owner, 'bold green') . ".\n";
+		. "New owner: ". colored($owner, 'bold green') . ".\n";
 	exit;
 }
 

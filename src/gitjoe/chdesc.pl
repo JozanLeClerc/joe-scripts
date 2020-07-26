@@ -26,7 +26,7 @@ sub main {
 	close($desc_fh);
 	substr($repo, -1) = "";
 	print "Changed git repository " . colored($repo, 'bold green') . " description for user " . colored($usr, 'bold') . ".\n"
-	. "New description: ". colored($desc, 'bold green') . ".\n";
+		. "New description: ". colored($desc, 'bold green') . ".\n";
 	exit;
 }
 
