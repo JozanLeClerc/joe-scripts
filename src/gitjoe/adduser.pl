@@ -41,7 +41,7 @@ yes
 no
 EOF"
 		);
-	my ($login, $passwd, $uid, $gid) = getpwnam($user);
+	my (undef, undef, $uid, $gid) = getpwnam($user);
 	mkdir $home_dir . '.ssh/', 0700;
 	chown $uid, $gid, $home_dir . '.ssh/';
 	# system(
