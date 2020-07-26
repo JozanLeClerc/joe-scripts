@@ -24,11 +24,13 @@ sub main {
 	open(my $desc_fh, '>:encoding(UTF-8)', $home_dir . $repo . 'description');
 	print $desc_fh $desc;
 	close($desc_fh);
-	system(
-		'/usr/local/bin/dash',
-		'-c',
-		'/usr/sbin/chown -v ' . $usr . ':' . $usr . ' ' . $home_dir . $repo . 'description'
-		);
+	# my (undef, undef, $uid, $gid) = getpwnam($usr);
+	# chown $uid, $gid, $home_dir . '.ssh/';
+	# system(
+	# 	'/usr/local/bin/dash',
+	# 	'-c',
+	# 	'/usr/sbin/chown -v ' . $usr . ':' . $usr . ' ' . $home_dir . $repo . 'description'
+	# 	);
 	print "Changed git repository " . colored($repo, 'bold green') . " description for user " . colored($usr, 'bold') . ".\n"
 	. "New description: ". colored($desc, 'bold green') . ".\n";
 	exit;
