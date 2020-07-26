@@ -3,6 +3,8 @@
 use strict;
 use warnings;
 use Term::ANSIColor;
+use constant SCRIPTS_DIR	=> '/root/scripts/src/';
+use constant SSH_BOY		=> 'root@jozanleclerc.xyz';
 
 sub main {
 	my $argc = $#ARGV + 1;
@@ -12,10 +14,7 @@ sub main {
 			. colored("[script-invoke - (argument(s))]\n", 'bold');
 		exit 1;
 	}
-	my $scripts_dir = '/root/scripts/src/';
 	my $called_script = '';
-	my $word = '';
-	my $ssh_boy = 'root@jozanleclerc.xyz';
 	my $argv_line = '';
 	if (
 		$ARGV[0] eq 'addsshkey' ||
@@ -26,15 +25,15 @@ sub main {
 		$ARGV[0] eq 'rmrepo' ||
 		$ARGV[0] eq 'rmuser'
 		) {
-		$called_script = $scripts_dir . 'gitjoe/' . $ARGV[0] . '.pl';
+		$called_script = SCRIPTS_DIR . 'gitjoe/' . $ARGV[0] . '.pl';
 	}
 	elsif (
 		$ARGV[0] eq "update-gitjoe" ||
 		$ARGV[0] eq "update-vps"
 		) {
-		$word = $ARGV[0];
+		my $word = $ARGV[0];
 		$word =~ s/update-//;
-		$called_script = $scripts_dir . 'update/' . $word . '.pl';
+		$called_script = SCRIPTS_DIR . 'update/' . $word . '.pl';
 	}
 	else {
 		print colored("Failed!\n", 'bold red')
@@ -51,7 +50,7 @@ sub main {
 			. colored("update-vps\n", 'bold green');
 		exit 2;
 	}
-	print "Calling " . colored($called_script, 'bold green') . " via " . colored($ssh_boy, 'bold magenta') . ".\n";
+	print "Calling " . colored($called_script, 'bold green') . " via " . colored(SSH_BOY, 'bold magenta') . ".\n";
 	if ($argc > 1) {
 		print "Arguments:\n";
 		my $i = 1;
@@ -66,7 +65,7 @@ sub main {
 	system(
 		$dash,
 		'-c',
-		'ssh ' . $ssh_boy . " << EOF
+		'ssh ' . SSH_BOY . " << EOF
 " . $called_script . $argv_line . "
 exit
 EOF
