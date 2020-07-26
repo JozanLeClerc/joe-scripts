@@ -41,34 +41,32 @@ yes
 no
 EOF"
 		);
-	system(
-		'/usr/local/bin/dash',
-		'-c',
-		'/bin/mkdir -v ' . $home_dir . '.ssh/'
-		);
-	system(
-		'/usr/local/bin/dash',
-		'-c',
-		'/usr/sbin/chown -v ' . $usr . ':' . $usr . ' ' . $home_dir . '.ssh/'
-		);
-	system(
-		'/usr/local/bin/dash',
-		'-c',
-		'/bin/chmod -v 700 ' . $home_dir . '.ssh/'
-		);
+	my (undef, undef, $uid, $gid) = getpwnam($user);
+	mkdir $home_dir . '.ssh/', 0700;
+	chown $uid, $gid, $home_dir . '.ssh/'
+	# system(
+	# 	'/usr/sbin/chown',
+	# 	'-v',
+	# 	$usr . ':' . $usr,
+	# 	$home_dir . '.ssh/'
+	# 	);
 	open(my $fh, '>:encoding(UTF-8)', $home_dir . '.ssh/authorized_keys');
 	print $fh $sshkey . "\n";
 	close($fh);
-	system(
-		'/usr/local/bin/dash',
-		'-c',
-		'/usr/sbin/chown -v ' . $usr . ':' . $usr . ' ' . $home_dir . '.ssh/authorized_keys'
-		);
-	system(
-		'/usr/local/bin/dash',
-		'-c',
-		'/bin/chmod -v 600 ' . $home_dir . '.ssh/authorized_keys'
-		);
+	chown $uid, $gid, $home_dir . '.ssh/authorized_keys'
+	# system(
+	# 	'/usr/sbin/chown',
+	# 	'-v',
+	# 	$usr . ':' . $usr,
+	# 	$home_dir . '.ssh/authorized_keys'
+	# 	);
+	chmod 0600, $home_dir . '.ssh/authorized_keys';
+	# system(
+	# 	'/bin/chmod',
+	# 	'-v',
+	# 	'600',
+	# 	$home_dir . '.ssh/authorized_keys'
+	# 	);
 	print "Created new git user " . colored($usr, 'bold green') . ".\n";
 	exit;
 }
