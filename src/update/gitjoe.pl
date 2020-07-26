@@ -28,9 +28,9 @@ sub stagit_generate {
 	my $home_dir = '/usr/home/' . $user . '/';
 	chdir($site_dir);
 	system(
-		'/usr/local/bin/dash',
-		'-c',
-		'/bin/rm -rf ' . $user . '/'
+		'/bin/rm',
+		'-rf',
+		$user . '/'
 		);
 	mkdir($user . '/', 0755);
 	my $i = 0;
@@ -46,9 +46,8 @@ sub stagit_generate {
 		$repos[$i] = $repos[$i] . '.git';
 		print "Indexing " . colored($user . '/' . $repos[$i], 'bold') . ".\n";
 		system(
-			'/usr/local/bin/dash',
-			'-c',
-			'/usr/local/bin/stagit ' . $home_dir . $repos[$i] . '/'
+			'/usr/local/bin/stagit',
+			$home_dir . $repos[$i] . '/'
 			);
 		copy('../style.css', './style.css');
 		copy('../logo.png', './logo.png');
@@ -58,7 +57,7 @@ sub stagit_generate {
 	system(
 		'/usr/local/bin/dash',
 		'-c',
-		'/usr/local/bin/stagit-index ' . $repos_line . '> index.html'
+		'/usr/local/bin/stagit-index ' . $repos_line . '>index.html'
 		);
 	system(
 		'/usr/local/bin/dash',

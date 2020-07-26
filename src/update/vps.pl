@@ -3,22 +3,32 @@
 use strict;
 use warnings;
 use Term::ANSIColor;
+use constant GIT_PATH	=> '/usr/local/bin/git';
 
 sub main {
 	system(
-		'/usr/local/bin/dash',
-		'-c',
-		'git -C /usr/local/www/jozan pull origin master >/dev/null 2>&1'
+		GIT_PATH,
+		'-C',
+		'/usr/local/www/jozan',
+		'pull',
+		'origin',
+		'master'
 		);
 	system(
-		'/usr/local/bin/dash',
-		'-c',
-		'git -C /usr/local/www/gitjoe pull origin master >/dev/null 2>&1'
+		GIT_PATH,
+		'-C',
+		'/usr/local/www/gitjoe',
+		'pull',
+		'origin',
+		'master'
 		);
 	system(
-		'/usr/local/bin/dash',
-		'-c',
-		'git -C /root/scripts pull origin master >/dev/null 2>&1'
+		GIT_PATH,
+		'-C',
+		'/root/scripts',
+		'pull',
+		'origin',
+		'master'
 		);
 	print "Updated jozan website, git website and scripts.\n";
 	exit;
