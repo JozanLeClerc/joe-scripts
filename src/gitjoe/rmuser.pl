@@ -3,6 +3,10 @@
 use strict;
 use warnings;
 use Term::ANSIColor;
+use constant {
+	DASH_PATH	=> '/usr/local/bin/dash',
+	RMUSER_PATH	=> '/usr/sbin/rmuser',
+};
 
 sub main {
 	my $argc = $#ARGV + 1;
@@ -15,9 +19,9 @@ sub main {
 	}
 	my $usr = $ARGV[0];
 	system(
-		'/usr/local/bin/dash',
+		DASH_PATH,
 		'-c',
-		"rmuser << EOF
+		RMUSER_PATH . " << EOF
 " . $usr . "
 y
 y

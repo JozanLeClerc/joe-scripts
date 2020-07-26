@@ -3,25 +3,28 @@
 use strict;
 use warnings;
 use Term::ANSIColor;
+use constant {
+	DASH_PATH		=> '/usr/local/bin/dash',
+	ADDUSER_PATH	=> '/usr/sbin/adduser',
+};
 
 sub main {
 	my $argc = $#ARGV + 1;
-	if ($argc < 3) {
+	if ($argc < 2) {
 		print colored("Failed!\n", 'bold red')
-			. "Missing argument, 3 needed "
-			. colored("[user - password - ssh public key]", 'bold')
+			. "Missing argument, 2 needed "
+			. colored("[user - ssh public key]", 'bold')
 			. "\n";
 		exit 1;
 	}
 	my $usr = $ARGV[0];
-	my $pass = $ARGV[1];
 	my $sshkey = "no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty ";
-	$sshkey = $sshkey . $ARGV[2];
+	$sshkey = $sshkey . $ARGV[1];
 	my $home_dir = '/usr/home/' . $usr . '/';
 	system(
-		'/usr/local/bin/dash',
+		DASH_PATH,
 		'-c',
-		"adduser << EOF
+		ADDUSER_PATH . " << EOF
 " . $usr . "
 
 
