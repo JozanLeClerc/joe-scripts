@@ -3,6 +3,7 @@
 use strict;
 use warnings;
 use Term::ANSIColor;
+use File::Find;
 
 sub main {
 	my $argc = $#ARGV + 1;
