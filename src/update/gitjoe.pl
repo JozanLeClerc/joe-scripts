@@ -6,7 +6,7 @@ use Term::ANSIColor;
 use File::Copy;
 use Capture::Tiny;
 use constant {
-	TMP_DIR		=> '/tmp/gitjoe',
+	TMP_DIR		=> '/tmp/gitjoe/',
 	SITE_DIR	=> '/usr/local/www/gitjoe/'
 };
 
@@ -94,7 +94,13 @@ sub main {
 		my @repos = get_repos_index($users[$i]);
 		stagit_generate($users[$i], @repos);
 		print "Removing user " . colored($users[$i], 'bold green') . " old directory from " . colored(SITE_DIR, 'bold') . ".\n";
+		system(
+			'/bin/rm',
+			'-rf',
+			SITE_DIR . $users[$i];
+			);
 		print "Moving user " . colored($users[$i], 'bold green') . " newly generated directory to " . colored(SITE_DIR, 'bold') . ".\n";
+		move(TMP_DIR . $users[$i], SITE_DIR . $users[$i]);
 		$i += 1;
 	}
 	rmdir(TMP_DIR);
