@@ -97,7 +97,7 @@ sub main {
 		system(
 			'/bin/rm',
 			'-rf',
-			SITE_DIR . $users[$i];
+			SITE_DIR . $users[$i]
 			);
 		print "Moving user " . colored($users[$i], 'bold green') . " newly generated directory to " . colored(SITE_DIR, 'bold') . ".\n";
 		move(TMP_DIR . $users[$i], SITE_DIR . $users[$i]);
