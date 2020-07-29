@@ -8,7 +8,8 @@ use constant {
 	ADDUSER_PATH	=> '/usr/sbin/adduser',
 };
 
-sub main {
+sub main
+{
 	my $argc = $#ARGV + 1;
 	if ($argc < 2) {
 		print colored("Failed!\n", 'bold red')

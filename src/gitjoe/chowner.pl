@@ -4,7 +4,8 @@ use strict;
 use warnings;
 use Term::ANSIColor;
 
-sub main {
+sub main
+{
 	my $argc = $#ARGV + 1;
 	if ($argc < 3) {
 		print colored("Failed!\n", 'bold red')
@@ -25,7 +26,7 @@ sub main {
 	print $owner_fh $owner;
 	close($owner_fh);
 	substr($repo, -1) = "";
-	print "Changed git repository " . colored($repo, 'bold green') . " owner for user " . colored($usr, 'bold') . ".\n"
+	print "Changed git repository " . colored($repo, 'bold green') . colored(" owner", 'bold') . " for user " . colored($usr, 'bold green') . ".\n"
 		. "New owner: ". colored($owner, 'bold green') . ".\n";
 	exit;
 }

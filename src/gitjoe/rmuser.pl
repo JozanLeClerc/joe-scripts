@@ -8,7 +8,8 @@ use constant {
 	RMUSER_PATH	=> '/usr/sbin/rmuser',
 };
 
-sub main {
+sub main
+{
 	my $argc = $#ARGV + 1;
 	if ($argc < 1) {
 		print colored("Failed!\n", 'bold red')

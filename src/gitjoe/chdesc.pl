@@ -4,7 +4,8 @@ use strict;
 use warnings;
 use Term::ANSIColor;
 
-sub main {
+sub main
+{
 	my $argc = $#ARGV + 1;
 	if ($argc < 3) {
 		print colored("Failed!\n", 'bold red')

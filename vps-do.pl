@@ -21,6 +21,7 @@ sub main {
 		$ARGV[0] eq 'adduser' ||
 		$ARGV[0] eq 'chdesc' ||
 		$ARGV[0] eq 'chowner' ||
+		$ARGV[0] eq 'chpublic' ||
 		$ARGV[0] eq 'newrepo' ||
 		$ARGV[0] eq 'rmrepo' ||
 		$ARGV[0] eq 'rmuser'
@@ -43,6 +44,7 @@ sub main {
 			. colored("adduser\n", 'bold green')
 			. colored("chdesc\n", 'bold green')
 			. colored("chowner\n", 'bold green')
+			. colored("chpublic\n", 'bold green')
 			. colored("newrepo\n", 'bold green')
 			. colored("rmrepo\n", 'bold green')
 			. colored("rmuser\n", 'bold green')
