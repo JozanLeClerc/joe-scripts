@@ -47,7 +47,7 @@ sub stagit_generate {
 		system(
 			'/usr/local/bin/stagit',
 			$home_dir . $repos[$i] . '/'
-			);
+		);
 		copy('../style.css', './style.css');
 		copy('../logo.png', './logo.png');
 		$i += 1;
@@ -57,22 +57,22 @@ sub stagit_generate {
 		'/usr/local/bin/dash',
 		'-c',
 		'/usr/local/bin/stagit-index ' . $repos_line . '>index.html'
-		);
+	);
 	system(
 		'/usr/local/bin/dash',
 		'-c',
 		"/usr/local/bin/gsed -i 's/<td>" . $user . "<\\/td>/<td class=\"td_author\">" . $user . "<\\/td>/g' index.html"
-		);
+	);
 	system(
 		'/usr/local/bin/dash',
 		'-c',
 		"/usr/local/bin/gsed -i 's/<td><span class=\"desc\">Repositories<\\/span><\\/td>/<td><span class=\"desc\"><h1>" . $user . " - Repositories<\\/h1><\\/span><\\/td><\\/tr><tr><td><\\/td><td>Back to <a href=\"https:\\/\\/git.jozanleclerc.xyz\\/\">GitJoe<\\/a><\\/td><\\/tr>/' index.html"
-		);
+	);
 	system(
 		'/usr/local/bin/dash',
 		'-c',
 		"/usr/local/bin/gsed -i 's/log.html/files.html/g' index.html"
-		);
+	);
 	return;
 }
 
@@ -98,7 +98,7 @@ sub main {
 			'/bin/rm',
 			'-rf',
 			SITE_DIR . $users[$i]
-			);
+		);
 		print "Moving user " . colored($users[$i], 'bold green') . " newly generated directory to " . colored(SITE_DIR, 'bold') . ".\n";
 		move(TMP_DIR . $users[$i], SITE_DIR . $users[$i]);
 		$i += 1;
