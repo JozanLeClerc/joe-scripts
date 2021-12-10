@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use Term::ANSIColor;
 use constant SCRIPTS_DIR	=> '/root/scripts/src/';
-use constant SSH_BOY		=> 'root@jozanleclerc.xyz';
+use constant SSH_BOY		=> 'root@jozanofastora.xyz';
 
 sub main {
 	my $argc = $#ARGV + 1;
