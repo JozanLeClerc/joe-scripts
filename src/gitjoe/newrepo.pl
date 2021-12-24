@@ -51,7 +51,7 @@ sub main
 	close($owner_fh);
 	open(my $url_fh, '>:encoding(UTF-8)', $home_dir . $repo . 'url');
 	substr($repo, -1) = "";
-	print $url_fh 'git://jozanleclerc.xyz/' . $usr . '/' . $repo;
+	print $url_fh 'git://jozanofastora.xyz/' . $usr . '/' . $repo;
 	close($url_fh);
 	$repo = $repo . '/';
 	open(my $desc_fh, '>:encoding(UTF-8)', $home_dir . $repo . 'description');
@@ -65,8 +65,8 @@ sub main
 	chown $uid, $gid, $home_dir . $repo . 'description';
 	substr($repo, -1) = "";
 	print "Created git repository " . colored($repo, 'bold green') . " for user " . colored($usr, 'bold') . ".\n";
-	print "Remote url: " . colored($usr . '@jozanleclerc.xyz:' . $repo, 'bold green') . "\n"
-		. "Public clone url: " . colored('git://jozanleclerc.xyz/' . $usr . '/' . $repo, 'bold green') . "\n";
+	print "Remote url: " . colored($usr . '@jozanofastora.xyz:' . $repo, 'bold green') . "\n"
+		. "Public clone url: " . colored('git://jozanofastora.xyz/' . $usr . '/' . $repo, 'bold green') . "\n";
 	exit;
 }
 
