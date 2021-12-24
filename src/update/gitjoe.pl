@@ -18,6 +18,7 @@ sub get_repos_index {
 	my $i = 0;
 	while (my $dir = readdir(DIR)) {
 		next if ($dir =~ m/^\./);
+		next if ($dir =~ m/42-cub3d.git/);
 		next if (!(-e $home_dir . $dir . '/git-daemon-export-ok'));
 		$repos[$i] = $dir;
 		$i += 1;
