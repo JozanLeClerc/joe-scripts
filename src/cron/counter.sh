@@ -5,6 +5,8 @@ destfile='/usr/local/www/jozan/index.html'
 foretext='Unique visitors: '
 tmp=$(mktemp)
 
-sed "s/$foretext.*$/$foretext$(awk '{print $1}' $logfile | sort | uniq | wc -l | tr -d ' ')/" $destfile >"$tmp"
+[ -e $logfile ]  || exit 1
+[ -e $destfile ] || exit 1
+sed "s/$foretext.*$/$foretext<b>$(awk '{print $1}' $logfile | sort | uniq | wc -l | tr -d ' ')<\/b>/" $destfile >"$tmp" || rm "$tmp"
 cat "$tmp" >$destfile
 rm "$tmp"

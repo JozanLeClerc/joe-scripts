@@ -66,7 +66,7 @@ sub stagit_generate {
 	system(
 		'/usr/local/bin/dash',
 		'-c',
-		"/usr/local/bin/gsed -i 's/<td><span class=\"desc\">Repositories<\\/span><\\/td>/<td><span class=\"desc\"><h1>" . $user . " - Repositories<\\/h1><\\/span><\\/td><\\/tr><tr><td><\\/td><td>Back to <a href=\"https:\\/\\/git.jozanofastora.xyz\\/\">GitJoe<\\/a><\\/td><\\/tr>/' index.html"
+		"/usr/local/bin/gsed -i 's/<td><span class=\"desc\">Repositories<\\/span><\\/td>/<td><span class=\"desc\"><h1>" . $user . " - Repositories<\\/h1><\\/span><\\/td><\\/tr><tr><td><\\/td><td>Back to <a href=\"https:\\/\\/gitjoe.xyz\\/\">GitJoe<\\/a><\\/td><\\/tr>/' index.html"
 	);
 	system(
 		'/usr/local/bin/dash',
