@@ -25,8 +25,8 @@ sub get_repos_index {
 		$i += 1;
 	}
 	closedir(DIR);
-	my @sorted_repos = sort @repos;
-	return @sorted_repos;
+	@repos = sort @repos;
+	return @repos;
 }
 
 sub stagit_generate {
