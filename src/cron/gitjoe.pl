@@ -5,14 +5,16 @@ use warnings;
 use Term::ANSIColor;
 use File::Copy;
 use Capture::Tiny;
+
 use constant {
+	HOME_DIR	=> '/usr/home/',
 	TMP_DIR		=> '/tmp/gitjoe/',
 	SITE_DIR	=> '/usr/local/www/gitjoe/'
 };
 
 sub get_repos_index {
 	my $user = $_[0];
-	my $home_dir = '/usr/home/' . $user . '/';
+	my $home_dir = HOME_DIR . $user . '/';
 	opendir(DIR, $home_dir);
 	my @repos;
 	my $i = 0;
@@ -29,7 +31,7 @@ sub get_repos_index {
 
 sub stagit_generate {
 	my ($user, @repos) = @_;
-	my $home_dir = '/usr/home/' . $user . '/';
+	my $home_dir = HOME_DIR . $user . '/';
 	chdir(TMP_DIR);
 	mkdir($user . '/', 0755);
 	my $i = 0;
@@ -45,7 +47,7 @@ sub stagit_generate {
 		$repos[$i] = $repos[$i] . '.git';
 		print "Indexing " . colored($user . '/' . $repos[$i], 'bold') . ".\n";
 		system(
-			'/usr/local/bin/stagit',
+			'stagit',
 			$home_dir . $repos[$i] . '/'
 		);
 		copy('../style.css', './style.css');
@@ -54,30 +56,20 @@ sub stagit_generate {
 	}
 	chdir(TMP_DIR . $user . '/');
 	system(
-		'/usr/local/bin/dash',
-		'-c',
-		'/usr/local/bin/stagit-index ' . $repos_line . '>index.html'
+		'stagit-index ' . $repos_line . '>index.html'
 	);
 	system(
-		'/usr/local/bin/dash',
-		'-c',
-		"/usr/local/bin/gsed -i 's/<td>" . $user . "<\\/td>/<td class=\"td_author\">" . $user . "<\\/td>/g' index.html"
+		"sed -i '' -e 's/<td>" . $user . "<\\/td>/<td class=\"td_author\">" . $user . "<\\/td>/g' index.html"
 	);
 	system(
-		'/usr/local/bin/dash',
-		'-c',
-		"/usr/local/bin/gsed -i 's/<td><span class=\"desc\">Repositories<\\/span><\\/td>/<td><span class=\"desc\"><h1>" . $user . " - Repositories<\\/h1><\\/span><\\/td><\\/tr><tr><td><\\/td><td>Back to <a href=\"https:\\/\\/gitjoe.xyz\\/\">GitJoe<\\/a><\\/td><\\/tr>/' index.html"
+		"sed -i '' -e 's/<td><span class=\"desc\">Repositories<\\/span><\\/td>/<td><span class=\"desc\"><h1>" . $user . " - Repositories<\\/h1><\\/span><\\/td><\\/tr><tr><td><\\/td><td>Back to <a href=\"https:\\/\\/gitjoe.xyz\\/\">GitJoe<\\/a><\\/td><\\/tr>/' index.html"
 	);
-	system(
-		'/usr/local/bin/dash',
-		'-c',
-		"/usr/local/bin/gsed -i 's/log.html/files.html/g' index.html"
-	);
+	system("sed -i '' -e 's/log.html/files.html/g' index.html");
 	return;
 }
 
 sub main {
-	my $home_dir = '/usr/home/';
+	my $home_dir = HOME_DIR;
 	my @users;
 	opendir(DIR, $home_dir);
 	my $i = 0;
@@ -95,7 +87,7 @@ sub main {
 		stagit_generate($users[$i], @repos);
 		print "Removing user " . colored($users[$i], 'bold green') . " old directory from " . colored(SITE_DIR, 'bold') . ".\n";
 		system(
-			'/bin/rm',
+			'rm',
 			'-rf',
 			SITE_DIR . $users[$i]
 		);
