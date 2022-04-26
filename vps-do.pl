@@ -28,14 +28,6 @@ sub main {
 		) {
 		$called_script = SCRIPTS_DIR . 'gitjoe/' . $ARGV[0] . '.pl';
 	}
-	elsif (
-		$ARGV[0] eq "update-gitjoe" ||
-		$ARGV[0] eq "update-vps"
-		) {
-		my $word = $ARGV[0];
-		$word =~ s/update-//;
-		$called_script = SCRIPTS_DIR . 'update/' . $word . '.pl';
-	}
 	else {
 		print colored("Failed!\n", 'bold red')
 			. colored($ARGV[0], 'bold yellow')
@@ -48,8 +40,6 @@ sub main {
 			. colored("newrepo\n", 'bold green')
 			. colored("rmrepo\n", 'bold green')
 			. colored("rmuser\n", 'bold green')
-			. colored("update-gitjoe\n", 'bold green')
-			. colored("update-vps\n", 'bold green');
 		exit 2;
 	}
 	print "Calling " . colored($called_script, 'bold green') . " via " . colored(SSH_BOY, 'bold magenta') . ".\n";
