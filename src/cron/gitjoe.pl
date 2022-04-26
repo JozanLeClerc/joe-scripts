@@ -7,7 +7,7 @@ use File::Copy;
 use Capture::Tiny;
 
 use constant {
-	HOME_DIR	=> '/usr/home/',
+	HOME_DIR	=> '/usr/local/git/',
 	TMP_DIR		=> '/tmp/gitjoe/',
 	SITE_DIR	=> '/usr/local/www/gitjoe/'
 };

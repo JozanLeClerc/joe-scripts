@@ -6,9 +6,7 @@ use Term::ANSIColor;
 
 sub main {
 	system(
-		'/usr/local/bin/dash',
-		'-c',
-		'/usr/local/bin/git daemon --reuseaddr --base-path=/usr/home /usr/home &'
+		'git daemon --reuseaddr --base-path=/usr/local/git /usr/local/git &'
 		);
 	exit;
 }

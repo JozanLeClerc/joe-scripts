@@ -3,10 +3,7 @@
 use strict;
 use warnings;
 use Term::ANSIColor;
-use constant {
-	DASH_PATH		=> '/usr/local/bin/dash',
-	ADDUSER_PATH	=> '/usr/sbin/adduser',
-};
+use constant HOME_DIR => '/usr/local/git/';
 
 sub main
 {
@@ -21,11 +18,9 @@ sub main
 	my $usr = $ARGV[0];
 	my $sshkey = "no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty ";
 	$sshkey = $sshkey . $ARGV[1];
-	my $home_dir = '/usr/home/' . $usr . '/';
+	my $home_dir = HOME_DIR . $usr . '/';
 	system(
-		DASH_PATH,
-		'-c',
-		ADDUSER_PATH . " << EOF
+		"adduser << EOF
 " . $usr . "
 
 
@@ -33,7 +28,7 @@ sub main
 
 
 git-shell
-
+" . HOME_DIR . $usr . "
 
 
 

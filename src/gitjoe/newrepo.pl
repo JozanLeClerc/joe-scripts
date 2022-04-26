@@ -4,6 +4,7 @@ use strict;
 use warnings;
 use Term::ANSIColor;
 use File::Find;
+use constant HOME_DIR => '/usr/local/git/';
 
 sub main
 {
@@ -21,7 +22,7 @@ sub main
 	if ($argc >= 3) {
 		$desc = $ARGV[2];
 	}
-	my $home_dir = '/usr/home/' . $usr . '/';
+	my $home_dir = HOME_DIR . $usr . '/';
 	if (substr($repo, -4) ne '.git') {
 		$repo = $repo . '.git';
 	}

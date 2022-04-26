@@ -3,6 +3,7 @@
 use strict;
 use warnings;
 use Term::ANSIColor;
+use constant HOME_DIR => '/usr/local/git/';
 
 sub main
 {
@@ -17,7 +18,7 @@ sub main
 	my $usr = $ARGV[0];
 	my $sshkey = "no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty ";
 	$sshkey = $sshkey . $ARGV[1];
-	my $home_dir = '/usr/home/' . $usr . '/';
+	my $home_dir = HOME_DIR . $usr . '/';
 	open(my $fh, '>>:encoding(UTF-8)', $home_dir . '.ssh/authorized_keys');
 	print $fh "$sshkey\n";
 	close($fh);
