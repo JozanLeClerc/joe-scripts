@@ -8,7 +8,6 @@ use Capture::Tiny;
 
 use constant {
 	HOME_DIR	=> '/usr/local/git/',
-	TMP_DIR		=> '/tmp/gitjoe/',
 	SITE_DIR	=> '/usr/local/www/gitjoe/'
 };
 
@@ -32,18 +31,19 @@ sub get_repos_index {
 sub stagit_generate {
 	my ($user, @repos) = @_;
 	my $home_dir = HOME_DIR . $user . '/';
-	chdir(TMP_DIR);
+	my $tmp_dir = `mktemp -d -t gitjoe`;
+	chdir($tmp_dir);
 	mkdir($user . '/', 0755);
 	my $i = 0;
 	my $repos_line = "";
 	copy(SITE_DIR . 'css/gitjoe.css', './' . $user . '/style.css');
 	copy(SITE_DIR . 'img/logo.png', './' . $user . '/logo.png');
 	while ($i < @repos) {
-		chdir(TMP_DIR . $user . '/');
+		chdir($tmp_dir . $user . '/');
 		$repos_line = $repos_line . ' ' . $home_dir . $repos[$i] . '/';
 		substr($repos[$i], -4) = "";
 		mkdir($repos[$i] . '/', 0755);
-		chdir(TMP_DIR . $user . '/' . $repos[$i] . '/');
+		chdir($tmp_dir . $user . '/' . $repos[$i] . '/');
 		$repos[$i] = $repos[$i] . '.git';
 		print "Indexing " . colored($user . '/' . $repos[$i], 'bold') . ".\n";
 		system(
@@ -54,7 +54,7 @@ sub stagit_generate {
 		copy('../logo.png', './logo.png');
 		$i += 1;
 	}
-	chdir(TMP_DIR . $user . '/');
+	chdir($tmp_dir . $user . '/');
 	system(
 		'stagit-index ' . $repos_line . '>index.html'
 	);
@@ -81,7 +81,7 @@ sub main {
 	}
 	closedir(DIR);
 	$i = 0;
-	mkdir(TMP_DIR, 0755);
+	mkdir($tmp_dir, 0755);
 	while ($i < @users) {
 		my @repos = get_repos_index($users[$i]);
 		stagit_generate($users[$i], @repos);
@@ -92,10 +92,10 @@ sub main {
 			SITE_DIR . $users[$i]
 		);
 		print "Moving user " . colored($users[$i], 'bold green') . " newly generated directory to " . colored(SITE_DIR, 'bold') . ".\n";
-		move(TMP_DIR . $users[$i], SITE_DIR . $users[$i]);
+		move($tmp_dir . $users[$i], SITE_DIR . $users[$i]);
 		$i += 1;
 	}
-	rmdir(TMP_DIR);
+	rmdir($tmp_dir);
 	print "Updated GitJoe index.\n";
 	exit;
 }
