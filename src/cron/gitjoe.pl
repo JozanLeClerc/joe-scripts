@@ -4,11 +4,11 @@ use strict;
 use warnings;
 use Term::ANSIColor;
 use File::Copy;
-use Capture::Tiny;
 
 use constant {
+	TMP_DIR		=> '/tmp/gitjoe/',
 	HOME_DIR	=> '/usr/local/git/',
-	SITE_DIR	=> '/usr/local/www/gitjoe/'
+	SITE_DIR	=> '/usr/local/www/gitjoe/',
 };
 
 sub get_repos_index {
@@ -31,19 +31,18 @@ sub get_repos_index {
 sub stagit_generate {
 	my ($user, @repos) = @_;
 	my $home_dir = HOME_DIR . $user . '/';
-	my $tmp_dir = `mktemp -d -t gitjoe`;
-	chdir($tmp_dir);
+	chdir(TMP_DIR);
 	mkdir($user . '/', 0755);
 	my $i = 0;
 	my $repos_line = "";
 	copy(SITE_DIR . 'css/gitjoe.css', './' . $user . '/style.css');
 	copy(SITE_DIR . 'img/logo.png', './' . $user . '/logo.png');
 	while ($i < @repos) {
-		chdir($tmp_dir . $user . '/');
+		chdir(TMP_DIR . $user . '/');
 		$repos_line = $repos_line . ' ' . $home_dir . $repos[$i] . '/';
 		substr($repos[$i], -4) = "";
 		mkdir($repos[$i] . '/', 0755);
-		chdir($tmp_dir . $user . '/' . $repos[$i] . '/');
+		chdir(TMP_DIR . $user . '/' . $repos[$i] . '/');
 		$repos[$i] = $repos[$i] . '.git';
 		print "Indexing " . colored($user . '/' . $repos[$i], 'bold') . ".\n";
 		system(
@@ -54,7 +53,7 @@ sub stagit_generate {
 		copy('../logo.png', './logo.png');
 		$i += 1;
 	}
-	chdir($tmp_dir . $user . '/');
+	chdir(TMP_DIR . $user . '/');
 	system(
 		'stagit-index ' . $repos_line . '>index.html'
 	);
@@ -81,21 +80,21 @@ sub main {
 	}
 	closedir(DIR);
 	$i = 0;
-	mkdir($tmp_dir, 0755);
+	mkdir(TMP_DIR, 0700);
 	while ($i < @users) {
 		my @repos = get_repos_index($users[$i]);
 		stagit_generate($users[$i], @repos);
-		print "Removing user " . colored($users[$i], 'bold green') . " old directory from " . colored(SITE_DIR, 'bold') . ".\n";
 		system(
 			'rm',
 			'-rf',
-			SITE_DIR . $users[$i]
+			SITE_DIR . 'users/' . $users[$i]
 		);
-		print "Moving user " . colored($users[$i], 'bold green') . " newly generated directory to " . colored(SITE_DIR, 'bold') . ".\n";
-		move($tmp_dir . $users[$i], SITE_DIR . $users[$i]);
+		print "Removed user " . colored($users[$i], 'bold green') . " old directory from " . colored(SITE_DIR . 'users', 'bold') . ".\n";
+		move(TMP_DIR . $users[$i], SITE_DIR . 'users/' . $users[$i]);
+		print "Moved user " . colored($users[$i], 'bold green') . " newly generated directory to " . colored(SITE_DIR . 'users', 'bold') . ".\n";
 		$i += 1;
 	}
-	rmdir($tmp_dir);
+	rmdir(TMP_DIR);
 	print "Updated GitJoe index.\n";
 	exit;
 }
