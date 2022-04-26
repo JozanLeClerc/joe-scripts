@@ -62,11 +62,7 @@ sub main {
 			$i += 1;
 		}
 	}
-	my $dash = `/bin/sh -c "which dash"`;
-	chomp $dash;
 	system(
-		$dash,
-		'-c',
 		'ssh ' . SSH_BOY . " << EOF
 " . $called_script . $argv_line . "
 exit
