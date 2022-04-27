@@ -3,17 +3,12 @@
 use strict;
 use warnings;
 use Term::ANSIColor;
+
 use constant SCRIPTS_DIR	=> '/root/scripts/src/';
 use constant SSH_BOY		=> 'root@jozanofastora.xyz';
 
 sub main {
 	my $argc = $#ARGV + 1;
-	if ($argc < 1) {
-		print colored("Failed!\n", 'bold red')
-			. 'Missing argument, at least 2 needed '
-			. colored("[script-invoke - (argument(s))]\n", 'bold');
-		exit 1;
-	}
 	my $called_script = '';
 	my $argv_line = '';
 	if (
