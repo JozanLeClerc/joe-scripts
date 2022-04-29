@@ -35,7 +35,7 @@ sub main
 	}
 	print "Changed git repository " . colored($repo, 'bold green')
 		. " for user " . colored($usr, 'bold green')
-		. colored(' visibility state to ', 'bold') . colored($state, 'bold green') . ".\n";
+		. colored(' visibility state', 'bold') . ' to '. colored($state, 'bold green') . ".\n";
 	exit;
 }
 
